@@ -1,12 +1,12 @@
 import pulumi
-from pulumi_awsx import config
+from pulumi_aws import config
 
 """
 Configuration variables from pulumi settings file
 """
 stack_config = pulumi.Config()
 stack_name = pulumi.get_stack()
-logged_in_person = config.get("loggedInPerson")
+logged_in_person = stack_config.get("loggedInPerson")
 
 """
 General cost tags populated to every single resource in the account:
