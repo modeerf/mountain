@@ -3,7 +3,7 @@ import pulumi_eks as eks_provider
 from pulumi import export, ResourceOptions
 import pulumi_kubernetes as k8s
 
-from settings import general_tags, cluster_descriptor, flux_github_repo_owner, flux_github_repo_name, flux_github_token, flux_cli_version
+from settings import general_tags, cluster_descriptor
 from vpc import mtn_vpc, mtn_private_subnets, mtn_eks_cp_subnets
 from helpers import create_iam_role, create_oidc_role, create_policy
 
