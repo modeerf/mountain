@@ -1,0 +1,40 @@
+
+import pulumi_awsx as awsx
+from vpc import mtn_vpc, mtn_public_subnets, mtn_eks_cp_subnets
+
+
+# Get the stack name for generating the key pair name
+stack_name = pulumi.get_stack()
+
+# Create an AWS key pair resource
+key_pair = aws.ec2.KeyPair("my-key-pair",
+    key_name=stack_name,  # Use stack name as the key name
+)
+
+# Export the public key for the key pair
+pulumi.export("public_key", key_pair.key_name)
+
+# Create a security group for the bastion host to allow SSH traffic
+bastion_sg = aws.ec2.SecurityGroup("bastion-security-group",
+    vpc_id=mtn_vpc.id,
+    ingress=[
+        {
+            "protocol": "tcp",
+            "from_port": 22,
+            "to_port": 22,
+            "cidr_blocks": ["0.0.0.0/0"],  # Allow SSH from anywhere (for demo purposes)
+        },
+    ],
+)
+
+# Create the bastion host instance in the public subnet
+bastion_host = aws.ec2.Instance("bastion-host",
+    instance_type="t2.micro",
+    ami="ami-0c55b159cbfafe1f0",  # Replace with your preferred AMI ID
+    subnet_id=mtn_public_subnet.id,
+    key_name=key_pair.key_name,
+    vpc_security_group_ids=[bastion_sg.id],
+)
+
+# Export the public IP of the bastion host for easy access
+pulumi.export("bastion_public_ip", bastion_host.public_ip)
