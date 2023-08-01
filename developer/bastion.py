@@ -1,5 +1,6 @@
 
 import pulumi_awsx as awsx
+import pulumi
 from vpc import mtn_vpc, mtn_public_subnets, mtn_eks_cp_subnets
 
 
