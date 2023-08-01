@@ -1,4 +1,4 @@
-from pulumi_awsx import ec2
+from pulumi_aws import ec2
 from pulumi import ResourceOptions
 from settings import deployment_region, endpoint_services, general_tags
 from vpc import mtn_vpc, mtn_private_subnets

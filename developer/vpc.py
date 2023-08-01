@@ -1,5 +1,5 @@
 import pulumi
-from pulumi_awsx import ec2, config, get_availability_zones
+from pulumi_aws import ec2, config, get_availability_zones
 from settings import general_tags, cluster_descriptor, mtn_vpc_cidr, mtn_private_subnet_cidrs, mtn_public_subnet_cidrs, mtn_eks_cp_subnet_cidrs
 
 """
