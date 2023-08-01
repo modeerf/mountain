@@ -1,4 +1,4 @@
-from pulumi_awsx import iam
+from pulumi_aws import iam
 import json
 import pulumi
 
