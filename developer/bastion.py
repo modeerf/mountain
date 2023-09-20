@@ -67,3 +67,4 @@ bastion_host = aws.ec2.Instance("bastion-host",
 
 # Export the public IP of the bastion host for easy access
 pulumi.export("bastion_public_ip", bastion_host.public_ip)
+pulumi.export('kubeconfig', kubeconfig)

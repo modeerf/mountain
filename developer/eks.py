@@ -195,3 +195,5 @@ karpenter_namespace = k8s.core.v1.Namespace("karpenter-namespace",
         depends_on=[mtn_eks_cluster]
     )
 )
+
+pulumi.export('kubeconfig', kubeconfig)
